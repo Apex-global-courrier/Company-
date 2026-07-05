@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>APEX-GLOBAL-SHIPPING | Global Shipping & Logistics Solutions</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap');
+  :root{ --navy:#061A33; --blue:#1D6FE0; --blue-light:#4F9BFF; --sky:#EAF2FF; }
+  body{ font-family:'Inter', system-ui, sans-serif; color:#1B2A3C; }
+  h1,h2,h3,.display{ font-family:'Plus Jakarta Sans', system-ui, sans-serif; }
+  .hero-bg{
+    background:
+      linear-gradient(100deg, rgba(6,26,51,.94) 0%, rgba(6,26,51,.80) 45%, rgba(10,38,71,.55) 100%),
+      url('https://images.unsplash.com/photo-1494412651409-8963ce7935a7?auto=format&fit=crop&w=1800&q=80') center/cover no-repeat;
+  }
+  .navbar-blur{ backdrop-filter: blur(10px); background: rgba(6,26,51,0.55); }
+  .route-dot{ animation: pulse 2.4s ease-in-out infinite; }
+  @keyframes pulse{ 0%,100%{ opacity:.4; transform:scale(1);} 50%{ opacity:1; transform:scale(1.6);} }
+  .card-lift{ transition: transform .25s ease, box-shadow .25s ease; }
+  .card-lift:hover{ transform: translateY(-6px); box-shadow: 0 20px 40px -12px rgba(29,111,224,.25); }
+  .reveal{ opacity:0; transform:translateY(24px); transition: all .7s cubic-bezier(.2,.7,.2,1); }
+  .reveal.in{ opacity:1; transform:translateY(0); }
+  @media (prefers-reduced-motion: reduce){ .route-dot{ animation:none; } .reveal{ opacity:1; transform:none; transition:none; } }
+  ::selection{ background: var(--blue); color:#fff; }
+</style>
+</head>
+<body class="bg-white">
+
+<nav class="fixed top-0 w-full z-50 navbar-blur">
+  <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+    <div class="flex items-center gap-3">
+      <div class="w-10 h-10 bg-white rounded-xl flex items-center justify-center text-xl font-extrabold text-blue-700 display">A</div>
+      <span class="text-white font-bold text-lg tracking-tight display">APEX-GLOBAL-SHIPPING</span>
+    </div>
+    <div class="hidden md:flex items-center gap-8 text-sm font-medium text-blue-50">
+      <a href="#services" class="hover:text-white transition">Services</a>
+      <a href="#track" class="hover:text-white transition">Track Shipment</a>
+      <a href="#about" class="hover:text-white transition">About</a>
+      <a href="ship.html" class="bg-blue-600 hover:bg-blue-500 text-white px-5 py-2.5 rounded-xl transition">Ship a Package</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero-bg text-white min-h-screen flex items-center pt-24 pb-16 relative overflow-hidden">
+  <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-5 gap-12 items-center relative z-10">
+    <div class="lg:col-span-3">
+      <span class="inline-flex items-center gap-2 bg-white/10 border border-white/20 text-blue-100 text-xs font-semibold tracking-widest uppercase px-4 py-2 rounded-full">
+        <span class="w-2 h-2 rounded-full bg-blue-400 route-dot"></span> Live in 160+ countries
+      </span>
+      <h1 class="display text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-[1.05] mt-6">
+        Global logistics, delivered on time — every time.
+      </h1>
+      <p class="mt-6 text-lg text-blue-100 max-w-xl">
+        APEX-GLOBAL-SHIPPING moves freight by air, sea and road with real-time tracking,
+        secure warehousing and a support team that never sleeps.
+      </p>
+      <div class="mt-10 flex flex-wrap gap-4">
+        <a href="ship.html" class="bg-blue-600 hover:bg-blue-500 px-8 py-4 rounded-2xl font-semibold transition">Ship a Package</a>
+        <a href="#track" class="border border-white/30 hover:bg-white/10 px-8 py-4 rounded-2xl font-semibold transition">Track a Shipment</a>
+      </div>
+      <div class="mt-14 grid grid-cols-3 gap-6 max-w-lg">
+        <div><div class="text-2xl font-bold display">101K+</div><div class="text-xs text-blue-200 mt-1">Packages Delivered</div></div>
+        <div><div class="text-2xl font-bold display">160+</div><div class="text-xs text-blue-200 mt-1">Countries Served</div></div>
+        <div><div class="text-2xl font-bold display">16.7K+</div><div class="text-xs text-blue-200 mt-1">Happy Clients</div></div>
+      </div>
+    </div>
+    <div class="lg:col-span-2">
+      <div class="bg-white/95 text-ink rounded-3xl shadow-2xl p-7">
+        <p class="text-xs font-semibold uppercase tracking-widest text-blue-600 mb-1">Live demo</p>
+        <p class="font-bold text-lg mb-5">Create a real shipment below</p>
+        <p class="text-sm text-gray-600">This site is connected to a real backend. Click <strong>"Ship a Package"</strong> to generate an actual tracking number and a printable receipt — or track an existing shipment further down this page.</p>
+        <a href="ship.html" class="mt-6 inline-flex bg-blue-700 hover:bg-blue-800 text-white font-semibold px-6 py-3 rounded-xl transition">Get Started →</a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- TRACK -->
+<section id="track" class="py-24 bg-sky">
+  <div class="max-w-3xl mx-auto px-6 text-center reveal">
+    <h2 class="display text-3xl sm:text-4xl font-extrabold text-navy">Track &amp; trace your shipment</h2>
+    <p class="text-lg text-gray-600 mt-4">Enter a tracking number to get its live status from our system.</p>
+    <div class="flex flex-col sm:flex-row gap-3 max-w-xl mx-auto mt-8">
+      <input id="track-input" type="text"
+        class="flex-1 border-2 border-blue-200 focus:border-blue-600 bg-white rounded-2xl px-6 py-4 text-base outline-none"
+        placeholder="e.g. 1234567890">
+      <button onclick="trackShipment()"
+        class="bg-blue-700 hover:bg-blue-800 text-white font-semibold px-8 py-4 rounded-2xl transition">
+        Track Shipment
+      </button>
+    </div>
+    <div id="track-result" class="hidden mt-6 p-5 rounded-2xl text-left max-w-xl mx-auto"></div>
+  </div>
+</section>
+
+<section id="services" class="py-24 bg-white">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="text-center mb-16 reveal">
+      <p class="text-blue-600 font-semibold uppercase tracking-widest text-sm">What we do</p>
+      <h2 class="display text-3xl sm:text-4xl font-extrabold text-navy mt-3">Our Services</h2>
+      <p class="text-lg text-gray-600 mt-4 max-w-2xl mx-auto">Comprehensive shipping and logistics solutions built around your supply chain.</p>
+    </div>
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div class="card-lift bg-white border border-gray-100 rounded-3xl overflow-hidden shadow-sm">
+        <img src="https://images.unsplash.com/photo-1583500178690-f7fd8dbb659e?auto=format&fit=crop&w=800&q=80" class="w-full h-44 object-cover" alt="Cargo plane on runway">
+        <div class="p-8"><i class="fa-solid fa-plane text-blue-600 text-2xl mb-4"></i><h3 class="text-xl font-bold mb-2">Air Freight</h3><p class="text-gray-600 text-sm">Fast, reliable global air-freight for time-sensitive cargo.</p></div>
+      </div>
+      <div class="card-lift bg-white border border-gray-100 rounded-3xl overflow-hidden shadow-sm">
+        <img src="https://images.unsplash.com/photo-1605745341112-85968b19335b?auto=format&fit=crop&w=800&q=80" class="w-full h-44 object-cover" alt="Container ship at sea">
+        <div class="p-8"><i class="fa-solid fa-ship text-blue-600 text-2xl mb-4"></i><h3 class="text-xl font-bold mb-2">Sea &amp; Ocean Freight</h3><p class="text-gray-600 text-sm">FCL and LCL ocean shipping, port-to-port or door-to-door.</p></div>
+      </div>
+      <div class="card-lift bg-white border border-gray-100 rounded-3xl overflow-hidden shadow-sm">
+        <img src="https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?auto=format&fit=crop&w=800&q=80" class="w-full h-44 object-cover" alt="Delivery truck on highway">
+        <div class="p-8"><i class="fa-solid fa-truck text-blue-600 text-2xl mb-4"></i><h3 class="text-xl font-bold mb-2">Road Transportation</h3><p class="text-gray-600 text-sm">A dependable trucking network for last-mile and long-haul routes.</p></div>
+      </div>
+      <div class="card-lift bg-white border border-gray-100 rounded-3xl overflow-hidden shadow-sm">
+        <img src="https://images.unsplash.com/photo-1591696331111-ef9586a5b17a?auto=format&fit=crop&w=800&q=80" class="w-full h-44 object-cover" alt="Secure sealed package">
+        <div class="p-8"><i class="fa-solid fa-lock text-blue-600 text-2xl mb-4"></i><h3 class="text-xl font-bold mb-2">Secure Logistics</h3><p class="text-gray-600 text-sm">Confidential mail and high-value delivery with chain-of-custody tracking.</p></div>
+      </div>
+      <div class="card-lift bg-white border border-gray-100 rounded-3xl overflow-hidden shadow-sm">
+        <img src="https://images.unsplash.com/photo-1553413077-190dd305871c?auto=format&fit=crop&w=800&q=80" class="w-full h-44 object-cover" alt="Modern warehouse interior">
+        <div class="p-8"><i class="fa-solid fa-warehouse text-blue-600 text-2xl mb-4"></i><h3 class="text-xl font-bold mb-2">Warehousing</h3><p class="text-gray-600 text-sm">Shared and dedicated storage with real-time inventory technology.</p></div>
+      </div>
+      <div class="card-lift bg-white border border-gray-100 rounded-3xl overflow-hidden shadow-sm">
+        <img src="https://images.unsplash.com/photo-1620714223084-8fcacc6dfd8d?auto=format&fit=crop&w=800&q=80" class="w-full h-44 object-cover" alt="Packaging boxes and tape">
+        <div class="p-8"><i class="fa-solid fa-box text-blue-600 text-2xl mb-4"></i><h3 class="text-xl font-bold mb-2">Packaging &amp; Storage</h3><p class="text-gray-600 text-sm">Professional packaging with optional cargo insurance.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="about" class="py-24 bg-sky">
+  <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-14 items-center">
+    <div class="reveal">
+      <img src="https://images.unsplash.com/photo-1519003722824-194d4455a60c?auto=format&fit=crop&w=1000&q=80" class="rounded-3xl shadow-xl w-full h-[420px] object-cover" alt="Logistics team reviewing shipment plans in a warehouse">
+    </div>
+    <div class="reveal">
+      <p class="text-blue-600 font-semibold uppercase tracking-widest text-sm">About Us</p>
+      <h2 class="display text-3xl sm:text-4xl font-extrabold text-navy mt-3">Moving your business forward, one shipment at a time</h2>
+      <p class="text-gray-600 mt-6 leading-relaxed">APEX-GLOBAL-SHIPPING is a full-service logistics partner operating across air, sea and road networks, combining dependable operations with modern tracking technology.</p>
+    </div>
+  </div>
+</section>
+
+<!-- PERFORMANCE METRICS -->
+<section class="py-24 bg-navy text-white">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="text-center mb-16 reveal">
+      <h2 class="display text-3xl sm:text-4xl font-extrabold">Delivering Excellence, Backed by Data</h2>
+      <p class="text-blue-200 mt-4 max-w-2xl mx-auto">Industry-leading standards across every shipment we handle.</p>
+    </div>
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div class="bg-white/5 border border-white/10 rounded-2xl p-6">
+        <i class="fa-solid fa-magnifying-glass-location text-blue-400 text-xl mb-3"></i>
+        <p class="text-sm text-blue-200">Tracking Precision</p>
+        <p class="text-2xl font-bold display mt-1">Real-time <span class="text-sm font-normal text-blue-200">GPS Accuracy</span></p>
+        <p class="text-xs text-blue-300 mt-2">Advanced tracking systems with minute-by-minute updates.</p>
+      </div>
+      <div class="bg-white/5 border border-white/10 rounded-2xl p-6">
+        <i class="fa-solid fa-star text-blue-400 text-xl mb-3"></i>
+        <p class="text-sm text-blue-200">Client Satisfaction</p>
+        <p class="text-2xl font-bold display mt-1">4.9/5 <span class="text-sm font-normal text-blue-200">Average Rating</span></p>
+        <p class="text-xs text-blue-300 mt-2">Outstanding client satisfaction across all logistics services.</p>
+      </div>
+      <div class="bg-white/5 border border-white/10 rounded-2xl p-6">
+        <i class="fa-solid fa-truck-fast text-blue-400 text-xl mb-3"></i>
+        <p class="text-sm text-blue-200">Delivery Performance</p>
+        <p class="text-2xl font-bold display mt-1">99.8% <span class="text-sm font-normal text-blue-200">On-Time Delivery</span></p>
+        <p class="text-xs text-blue-300 mt-2">Industry-leading on-time performance across all shipping methods.</p>
+      </div>
+      <div class="bg-white/5 border border-white/10 rounded-2xl p-6">
+        <i class="fa-solid fa-calendar-check text-blue-400 text-xl mb-3"></i>
+        <p class="text-2xl font-bold display">11+ Years</p>
+        <p class="text-xs text-blue-300 mt-1">Industry Experience</p>
+      </div>
+      <div class="bg-white/5 border border-white/10 rounded-2xl p-6">
+        <i class="fa-solid fa-shield-halved text-blue-400 text-xl mb-3"></i>
+        <p class="text-2xl font-bold display">ISO 27001</p>
+        <p class="text-xs text-blue-300 mt-1">Security Certification</p>
+      </div>
+      <div class="bg-white/5 border border-white/10 rounded-2xl p-6">
+        <i class="fa-solid fa-trophy text-blue-400 text-xl mb-3"></i>
+        <p class="text-2xl font-bold display">Awards</p>
+        <p class="text-xs text-blue-300 mt-1">Industry Recognition</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="py-24 bg-white">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="text-center mb-16 reveal">
+      <h2 class="display text-3xl sm:text-4xl font-extrabold text-navy">What Our Clients Say</h2>
+      <p class="text-gray-600 mt-4 max-w-2xl mx-auto">Hear from our satisfied customers about their experience with our logistics solutions.</p>
+    </div>
+    <div class="grid md:grid-cols-3 gap-8">
+      <div class="bg-sky rounded-3xl p-8">
+        <div class="text-amber-400 mb-4">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <p class="text-gray-700 text-sm leading-relaxed">"Given my past experience with other logistics companies, I can say without exception that the services provided by APEX-GLOBAL-SHIPPING greatly exceed industry standards."</p>
+        <div class="flex items-center gap-3 mt-6">
+          <div class="w-10 h-10 rounded-full bg-blue-700 text-white flex items-center justify-center font-bold text-sm">MP</div>
+          <div><p class="font-semibold text-sm">Monique Pete</p><p class="text-xs text-gray-500">Logistics Manager, Martrax Inc.</p></div>
+        </div>
+      </div>
+      <div class="bg-sky rounded-3xl p-8">
+        <div class="text-amber-400 mb-4">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <p class="text-gray-700 text-sm leading-relaxed">"More than once, APEX-GLOBAL-SHIPPING has 'saved the day,' delivering our cargo on time with short notice. They've won my gratitude and loyalty with their 'can do' approach."</p>
+        <div class="flex items-center gap-3 mt-6">
+          <div class="w-10 h-10 rounded-full bg-blue-700 text-white flex items-center justify-center font-bold text-sm">SA</div>
+          <div><p class="font-semibold text-sm">Steve Anderson</p><p class="text-xs text-gray-500">President/Owner, Duplication Factory</p></div>
+        </div>
+      </div>
+      <div class="bg-sky rounded-3xl p-8">
+        <div class="text-amber-400 mb-4">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <p class="text-gray-700 text-sm leading-relaxed">"I am very pleased with the service provided by APEX-GLOBAL-SHIPPING. They find good carriers and use them regularly, so we get a high level of service. Their communication is outstanding."</p>
+        <div class="flex items-center gap-3 mt-6">
+          <div class="w-10 h-10 rounded-full bg-blue-700 text-white flex items-center justify-center font-bold text-sm">CB</div>
+          <div><p class="font-semibold text-sm">Cathy Beckman</p><p class="text-xs text-gray-500">Logistics Team, Oxea Chemicals</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRUSTED PARTNERS -->
+<section class="py-20 bg-sky">
+  <div class="max-w-7xl mx-auto px-6 text-center reveal">
+    <h2 class="display text-2xl sm:text-3xl font-extrabold text-navy">Trusted Partners</h2>
+    <p class="text-gray-600 mt-3 max-w-2xl mx-auto">Working with industry leaders to provide the best logistics solutions.</p>
+    <div class="flex flex-wrap justify-center gap-x-12 gap-y-6 mt-10 text-gray-400 font-semibold text-lg">
+      <span>MAERSK</span><span>DHL Partner Network</span><span>FedEx Alliance</span><span>Port Authority</span><span>IATA Cargo</span>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="py-20 bg-blue-700 text-white">
+  <div class="max-w-3xl mx-auto px-6 text-center reveal">
+    <h2 class="display text-3xl sm:text-4xl font-extrabold">Ready to Ship with Confidence?</h2>
+    <p class="text-blue-100 mt-4">Get started with our professional logistics services today. Request a free quote and experience the difference.</p>
+    <div class="mt-8 flex flex-wrap justify-center gap-4">
+      <a href="ship.html" class="bg-white text-blue-700 hover:bg-blue-50 px-8 py-4 rounded-2xl font-semibold transition">Ship a Package</a>
+      <a href="#track" class="border border-white/40 hover:bg-white/10 px-8 py-4 rounded-2xl font-semibold transition">Track Shipment</a>
+    </div>
+  </div>
+</section>
+
+<footer class="bg-gray-950 text-white py-16">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="grid md:grid-cols-4 gap-12">
+      <div class="max-w-xs md:col-span-1">
+        <div class="flex items-center gap-3 mb-6">
+          <div class="w-10 h-10 bg-blue-600 rounded-xl flex items-center justify-center text-xl font-extrabold display">A</div>
+          <span class="text-xl font-bold display">APEX-GLOBAL-SHIPPING</span>
+        </div>
+        <p class="opacity-70 text-sm">Providing smart logistics solutions across the world. We deliver excellence in shipping, courier services, and package tracking with our global network of trusted partners.</p>
+        <div class="flex gap-3 mt-6">
+          <a href="#" aria-label="Facebook" class="w-9 h-9 rounded-full bg-blue-600 hover:bg-blue-500 flex items-center justify-center transition"><i class="fa-brands fa-facebook-f text-sm"></i></a>
+          <a href="#" aria-label="Twitter / X" class="w-9 h-9 rounded-full bg-blue-600 hover:bg-blue-500 flex items-center justify-center transition"><i class="fa-brands fa-x-twitter text-sm"></i></a>
+          <a href="#" aria-label="LinkedIn" class="w-9 h-9 rounded-full bg-blue-600 hover:bg-blue-500 flex items-center justify-center transition"><i class="fa-brands fa-linkedin-in text-sm"></i></a>
+          <a href="#" aria-label="Instagram" class="w-9 h-9 rounded-full bg-blue-600 hover:bg-blue-500 flex items-center justify-center transition"><i class="fa-brands fa-instagram text-sm"></i></a>
+        </div>
+      </div>
+      <div>
+        <h4 class="font-semibold mb-5 text-sm uppercase tracking-widest text-blue-300">Quick Links</h4>
+        <ul class="space-y-3 opacity-75 text-sm">
+          <li><a href="index.html" class="hover:text-blue-300"><i class="fa-solid fa-chevron-right text-xs mr-1 text-blue-400"></i>Home</a></li>
+          <li><a href="#about" class="hover:text-blue-300"><i class="fa-solid fa-chevron-right text-xs mr-1 text-blue-400"></i>About Us</a></li>
+          <li><a href="#services" class="hover:text-blue-300"><i class="fa-solid fa-chevron-right text-xs mr-1 text-blue-400"></i>Our Services</a></li>
+          <li><a href="#track" class="hover:text-blue-300"><i class="fa-solid fa-chevron-right text-xs mr-1 text-blue-400"></i>Track Shipment</a></li>
+          <li><a href="ship.html" class="hover:text-blue-300"><i class="fa-solid fa-chevron-right text-xs mr-1 text-blue-400"></i>Ship a Package</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="font-semibold mb-5 text-sm uppercase tracking-widest text-blue-300">Contact Info</h4>
+        <p class="opacity-75 text-sm flex items-center gap-2"><i class="fa-solid fa-envelope text-blue-400"></i>info@apexglobalshipping.com</p>
+        <p class="opacity-75 text-sm mt-3 flex items-center gap-2"><i class="fa-solid fa-phone text-blue-400"></i>TOLL FREE Support</p>
+        <p class="opacity-75 text-sm mt-3 flex items-center gap-2"><i class="fa-solid fa-clock text-blue-400"></i>24/7 Global Support</p>
+      </div>
+      <div>
+        <h4 class="font-semibold mb-5 text-sm uppercase tracking-widest text-blue-300">Quick Track</h4>
+        <div class="flex flex-col gap-3">
+          <input id="footer-track-input" type="text" placeholder="Enter tracking number…" class="bg-white/5 border border-white/15 rounded-xl px-4 py-2.5 text-sm outline-none focus:border-blue-400 placeholder:text-white/40">
+          <button onclick="footerTrack()" class="bg-blue-600 hover:bg-blue-500 text-sm font-semibold rounded-xl py-2.5 transition"><i class="fa-solid fa-magnifying-glass mr-1"></i> Track</button>
+        </div>
+      </div>
+    </div>
+    <div class="flex flex-col sm:flex-row justify-between gap-4 text-xs opacity-50 mt-16 pt-8 border-t border-white/10">
+      <span>© 2026 APEX-GLOBAL-SHIPPING. All rights reserved. · School Assignment Demo</span>
+      <div class="flex gap-6">
+        <a href="#" class="hover:text-blue-300">Privacy Policy</a>
+        <a href="#" class="hover:text-blue-300">Terms of Service</a>
+        <a href="#" class="hover:text-blue-300">Shipping Policy</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  async function trackShipment(){
+    const input = document.getElementById('track-input');
+    const result = document.getElementById('track-result');
+    const tracking = input.value.trim();
+    if(!tracking){
+      result.className = 'mt-6 p-5 rounded-2xl text-left max-w-xl mx-auto bg-red-50 border border-red-200 text-red-700 font-medium';
+      result.textContent = 'Please enter a tracking number.';
+      result.classList.remove('hidden');
+      return;
+    }
+    result.className = 'mt-6 p-5 rounded-2xl text-left max-w-xl mx-auto bg-blue-50 border border-blue-200 text-blue-700 font-medium';
+    result.textContent = 'Looking up shipment…';
+    result.classList.remove('hidden');
+
+    try{
+      const res = await fetch(`/api/shipments/${encodeURIComponent(tracking)}`);
+      if(!res.ok){
+        const err = await res.json();
+        result.className = 'mt-6 p-5 rounded-2xl text-left max-w-xl mx-auto bg-red-50 border border-red-200 text-red-700 font-medium';
+        result.textContent = err.error || 'Shipment not found.';
+        return;
+      }
+      const s = await res.json();
+      result.className = 'mt-6 p-5 rounded-2xl text-left max-w-xl mx-auto bg-green-50 border border-green-200 text-green-800';
+      result.innerHTML = `
+        <p class="font-semibold"><i class="fa-solid fa-circle-check mr-2"></i>Shipment found — Status: <strong>${s.status}</strong></p>
+        <p class="text-sm mt-2">From <strong>${s.sender.name}</strong> to <strong>${s.receiver.name}</strong></p>
+        <a href="receipt.html?tracking=${s.trackingNumber}" class="inline-block mt-4 bg-blue-700 hover:bg-blue-800 text-white text-sm font-semibold px-5 py-2.5 rounded-xl transition">View Full Receipt →</a>
+      `;
+    }catch(e){
+      result.className = 'mt-6 p-5 rounded-2xl text-left max-w-xl mx-auto bg-red-50 border border-red-200 text-red-700 font-medium';
+      result.textContent = 'Could not reach the server. Make sure the backend is running (node server.js).';
+    }
+  }
+
+  document.getElementById('track-input').addEventListener('keydown', (e) => {
+    if(e.key === 'Enter') trackShipment();
+  });
+
+  function footerTrack(){
+    const footerInput = document.getElementById('footer-track-input');
+    const mainInput = document.getElementById('track-input');
+    mainInput.value = footerInput.value;
+    document.getElementById('track').scrollIntoView({ behavior: 'smooth' });
+    trackShipment();
+  }
+  document.getElementById('footer-track-input').addEventListener('keydown', (e) => {
+    if(e.key === 'Enter') footerTrack();
+  });
+
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
+  }, { threshold: 0.15 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+</script>
+</body>
+</html>
