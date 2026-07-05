@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ship a Package | APEX-GLOBAL-SHIPPING</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700;800&family=Inter:wght@400;500;600&display=swap');
+  body{ font-family:'Inter', system-ui, sans-serif; background:#EAF2FF; color:#1B2A3C; }
+  h1,h2,.display{ font-family:'Plus Jakarta Sans', system-ui, sans-serif; }
+  input, select, textarea{ transition: border-color .15s ease; }
+</style>
+</head>
+<body class="min-h-screen">
+
+<nav class="bg-[#061A33] py-4">
+  <div class="max-w-4xl mx-auto px-6 flex items-center justify-between">
+    <a href="index.html" class="flex items-center gap-3">
+      <div class="w-9 h-9 bg-white rounded-lg flex items-center justify-center text-lg font-extrabold text-blue-700 display">A</div>
+      <span class="text-white font-bold display">APEX-GLOBAL-SHIPPING</span>
+    </a>
+    <a href="index.html" class="text-blue-200 hover:text-white text-sm"><i class="fa-solid fa-arrow-left mr-1"></i>Back to site</a>
+  </div>
+</nav>
+
+<div class="max-w-4xl mx-auto px-6 py-14">
+  <div class="text-center mb-10">
+    <p class="text-blue-600 font-semibold uppercase tracking-widest text-sm">New Shipment</p>
+    <h1 class="display text-3xl sm:text-4xl font-extrabold mt-2">Create a Shipment</h1>
+    <p class="text-gray-600 mt-3">Fill in the details below. Submitting will call the live backend, generate a tracking number, and produce a printable receipt.</p>
+  </div>
+
+  <form id="shipment-form" class="bg-white rounded-3xl shadow-xl p-8 space-y-10">
+
+    <div>
+      <h2 class="font-bold text-lg mb-4 flex items-center gap-2"><i class="fa-solid fa-user text-blue-600"></i> Sender</h2>
+      <div class="grid sm:grid-cols-2 gap-5">
+        <input required name="sender_name" placeholder="Full name" class="border-2 border-gray-200 focus:border-blue-600 rounded-xl px-4 py-3 outline-none text-sm">
+        <input name="sender_phone" placeholder="Phone number" class="border-2 border-gray-200 focus:border-blue-600 rounded-xl px-4 py-3 outline-none text-sm">
+      </div>
+      <input name="sender_address" placeholder="Pickup address" class="mt-5 w-full border-2 border-gray-200 focus:border-blue-600 rounded-xl px-4 py-3 outline-none text-sm">
+    </div>
+
+    <div>
+      <h2 class="font-bold text-lg mb-4 flex items-center gap-2"><i class="fa-solid fa-user-check text-blue-600"></i> Receiver</h2>
+      <div class="grid sm:grid-cols-2 gap-5">
+        <input required name="receiver_name" placeholder="Full name" class="border-2 border-gray-200 focus:border-blue-600 rounded-xl px-4 py-3 outline-none text-sm">
+        <input name="receiver_phone" placeholder="Phone number" class="border-2 border-gray-200 focus:border-blue-600 rounded-xl px-4 py-3 outline-none text-sm">
+      </div>
+      <input name="receiver_address" placeholder="Delivery address" class="mt-5 w-full border-2 border-gray-200 focus:border-blue-600 rounded-xl px-4 py-3 outline-none text-sm">
+    </div>
+
+    <div>
+      <h2 class="font-bold text-lg mb-4 flex items-center gap-2"><i class="fa-solid fa-box text-blue-600"></i> Parcel</h2>
+      <div class="grid sm:grid-cols-3 gap-5">
+        <input name="parcel_description" placeholder="Description (e.g. Documents)" class="sm:col-span-2 border-2 border-gray-200 focus:border-blue-600 rounded-xl px-4 py-3 outline-none text-sm">
+        <input type="number" min="1" value="1" name="parcel_quantity" placeholder="Qty" class="border-2 border-gray-200 focus:border-blue-600 rounded-xl px-4 py-3 outline-none text-sm">
+      </div>
+    </div>
+
+    <div>
+      <h2 class="font-bold text-lg mb-4 flex items-center gap-2"><i class="fa-solid fa-sack-dollar text-blue-600"></i> Costs &amp; Payment</h2>
+      <div class="grid sm:grid-cols-3 gap-5">
+        <input type="number" min="0" step="0.01" required name="shipping_cost" placeholder="Shipping cost (USD)" class="border-2 border-gray-200 focus:border-blue-600 rounded-xl px-4 py-3 outline-none text-sm">
+        <input type="number" min="0" step="0.01" name="clearance_cost" placeholder="Clearance cost (USD)" class="border-2 border-gray-200 focus:border-blue-600 rounded-xl px-4 py-3 outline-none text-sm">
+        <select name="booking_mode" class="border-2 border-gray-200 focus:border-blue-600 rounded-xl px-4 py-3 outline-none text-sm">
+          <option value="ToPay">To Pay on Delivery</option>
+          <option value="Prepaid">Prepaid</option>
+        </select>
+      </div>
+    </div>
+
+    <div id="form-error" class="hidden bg-red-50 border border-red-200 text-red-700 text-sm rounded-xl px-4 py-3"></div>
+
+    <button type="submit" id="submit-btn" class="w-full bg-blue-700 hover:bg-blue-800 text-white font-semibold py-4 rounded-xl transition">
+      Generate Shipment &amp; Receipt →
+    </button>
+  </form>
+</div>
+
+<script>
+  const form = document.getElementById('shipment-form');
+  const errorBox = document.getElementById('form-error');
+  const submitBtn = document.getElementById('submit-btn');
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    errorBox.classList.add('hidden');
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Creating shipment…';
+
+    const fd = new FormData(form);
+    const payload = {
+      sender: {
+        name: fd.get('sender_name').trim(),
+        phone: fd.get('sender_phone').trim(),
+        address: fd.get('sender_address').trim(),
+      },
+      receiver: {
+        name: fd.get('receiver_name').trim(),
+        phone: fd.get('receiver_phone').trim(),
+        address: fd.get('receiver_address').trim(),
+      },
+      parcel: {
+        description: fd.get('parcel_description').trim(),
+        quantity: fd.get('parcel_quantity'),
+      },
+      costs: {
+        shippingCost: fd.get('shipping_cost'),
+        clearanceCost: fd.get('clearance_cost'),
+      },
+      bookingMode: fd.get('booking_mode'),
+    };
+
+    try {
+      const res = await fetch('/api/shipments', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || 'Something went wrong.');
+
+      window.location.href = `receipt.html?tracking=${data.trackingNumber}`;
+    } catch (err) {
+      errorBox.textContent = err.message.includes('fetch')
+        ? 'Could not reach the server. Make sure the backend is running (node server.js).'
+        : err.message;
+      errorBox.classList.remove('hidden');
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Generate Shipment & Receipt →';
+    }
+  });
+</script>
+</body>
+</html>
