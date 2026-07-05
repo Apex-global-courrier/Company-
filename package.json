@@ -1,0 +1,12 @@
+{
+  "name": "apex-global-shipping",
+  "version": "1.0.0",
+  "description": "APEX-GLOBAL-SHIPPING — demo logistics site with a shipment API and generated receipts.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": ">=14"
+  }
+}
